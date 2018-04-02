@@ -1,0 +1,153 @@
+package pong;
+
+import java.awt.Color;
+
+import java.awt.Graphics;
+
+public class paddle {
+
+	public int paddlenumber;
+
+	public int score;
+
+	public int ax, bx, ay, by, cy, dy;
+
+	public int width = 50, height = 200, updownwidth = 200, updownheight = 50;
+
+	public paddle(pong pong, int paddlenumber) {
+
+		// BİRİNCİ PEDAL
+		this.paddlenumber = paddlenumber;
+
+		if (paddlenumber == 1) {
+			this.ax = 0;
+			this.bx = 300;
+
+		}
+
+		if (paddlenumber == 2) {
+			// İKİNCİ PEDAL
+			this.ax = 1350;
+			this.bx = 800;
+
+		}
+		this.cy = 0;
+		this.ay = 300;
+		this.dy = 813;
+
+	}
+
+	public void render(Graphics g) {
+
+		g.setColor(Color.CYAN);
+		g.drawString(" Relax The Root", 400, 350);
+		g.drawString(" Relax The Root", 800, 550);
+
+		g.setColor(Color.WHITE);
+		g.fillRect(ax, ay, width, height);
+		g.fillRect(bx, cy, height, width);
+		g.fillRect(bx, dy, height, width);
+
+	}
+
+	public void moveup(boolean hareket) {
+
+		int speed = 25;
+
+		
+
+		if (hareket) {
+
+			if (ay > 0) {
+
+				ay -= speed;
+
+			}
+
+			else
+				ay = 0;
+		}
+
+	}
+
+	public void movedown(boolean hareket) {
+
+		int speed = 25;
+
+		if (ay + height + speed < pong.pong.height) {
+			ay += speed;
+		} else {
+			ay = pong.pong.height - height;
+		}
+	}
+
+	public void moveleft(boolean hareket, boolean paddle1, boolean paddle2) {
+
+		int speed = 25;
+
+		if (hareket) {
+
+			if (paddle1) {
+
+				if (bx > 0) {
+
+					bx -= speed;
+
+				}
+
+				else
+					bx = 0;
+
+			}
+
+			if (paddle2) {
+
+				if (bx > 700) {
+
+					bx -= speed;
+
+				}
+
+				else
+					bx = 700;
+
+			}
+
+		}
+
+	}
+
+	public void moveright(boolean hareket, boolean paddle1, boolean paddle2) {
+		int speed = 25;
+
+		if (hareket) {
+
+			if (paddle1) {
+
+				if (bx < 500) {
+
+					bx += speed;
+
+				}
+
+				else
+					bx = 500;
+
+			}
+
+			if (paddle2) {
+
+				if (bx < 1200) {
+
+					bx += speed;
+
+				}
+
+				else
+					bx = 1200;
+			}
+		}
+
+	}
+
+}
